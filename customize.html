@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Your Shirt | FARRELL CLOTHING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="customize.css">
+</head>
+<body>
+<header class="editor-topbar">
+  <a class="brand" href="index.html"><span>FARRELL</span><small>CLOTHING / CUSTOM STUDIO</small></a>
+  <div class="top-actions"><button id="undoBtn" class="tool-btn" title="Undo">↶</button><button id="redoBtn" class="tool-btn" title="Redo">↷</button><button id="saveBtn" class="primary-btn">Save Design</button></div>
+</header>
+<main class="editor-shell">
+  <aside class="tool-rail">
+    <button class="rail-tool active" data-panel="designPanel"><b>＋</b><span>Design</span></button>
+    <button class="rail-tool" data-panel="textPanel"><b>T</b><span>Text</span></button>
+    <button class="rail-tool" data-panel="uploadPanel"><b>▧</b><span>Upload</span></button>
+    <button class="rail-tool" data-panel="colorPanel"><b>◉</b><span>Color</span></button>
+  </aside>
+  <aside class="tools-panel">
+    <section id="designPanel" class="tool-panel active"><p class="eyebrow">START CREATING</p><h2>Your design</h2><p class="muted">Add artwork and position it inside the print area.</p>
+      <button class="wide-action" id="addTextQuick">＋ Add text</button><label class="upload-drop" for="imageUpload"><strong>＋ Upload artwork</strong><span>PNG, JPG or WEBP · max 5 MB</span></label><input id="imageUpload" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+      <div class="hint-card">Tip: Select an object on the shirt to move, resize or rotate it. Keep important artwork inside the dotted print boundary.</div>
+    </section>
+    <section id="textPanel" class="tool-panel"><p class="eyebrow">TYPOGRAPHY</p><h2>Add text</h2><label>Text content<input id="textValue" type="text" maxlength="60" placeholder="YOUR STREET STYLE"></label><label>Font<select id="fontFamily"><option value="Anton">Anton</option><option value="Permanent Marker">Permanent Marker</option><option value="Urbanist">Urbanist</option><option value="Arial">Arial</option></select></label><label>Text color<input id="textColor" type="color" value="#111111"></label><button id="addTextBtn" class="wide-action">Add text to shirt</button></section>
+    <section id="uploadPanel" class="tool-panel"><p class="eyebrow">YOUR ARTWORK</p><h2>Upload image</h2><label class="upload-drop tall" for="imageUpload"><strong>Choose image</strong><span>Transparent PNG works best for logos.</span></label><p class="muted tiny">Only upload artwork you own or have permission to use. Files are stored privately in your design folder.</p></section>
+    <section id="colorPanel" class="tool-panel"><p class="eyebrow">GARMENT</p><h2>Shirt color</h2><div class="swatches"><button class="swatch selected" data-color="#171717" style="--swatch:#171717" aria-label="Black"></button><button class="swatch" data-color="#f4f4f4" style="--swatch:#f4f4f4" aria-label="White"></button><button class="swatch" data-color="#777b83" style="--swatch:#777b83" aria-label="Gray"></button><button class="swatch" data-color="#182b50" style="--swatch:#182b50" aria-label="Navy"></button><button class="swatch" data-color="#7c2735" style="--swatch:#7c2735" aria-label="Burgundy"></button></div><p class="muted tiny">Color changes are shown in the preview. Actual garment colors may vary slightly.</p></section>
+    <div class="object-controls"><h3>Selected object</h3><div class="control-row"><button id="duplicateBtn">Duplicate</button><button id="frontBtn">Bring forward</button></div><div class="control-row"><button id="backBtn">Send backward</button><button id="deleteBtn" class="danger">Delete</button></div></div>
+  </aside>
+  <section class="workspace">
+    <div class="workspace-heading"><div><p class="eyebrow">LIVE PREVIEW</p><h1 id="productTitle">CUSTOM T-SHIRT</h1></div><div class="view-switch"><button class="view-btn active" data-view="front">Front</button><button class="view-btn" data-view="back">Back</button></div></div>
+    <div class="canvas-stage"><div class="canvas-wrap"><canvas id="shirtCanvas" width="620" height="650"></canvas><div class="print-guide">PRINT AREA</div></div></div>
+    <div class="workspace-footer"><span id="canvasStatus">Front view · Select an object to edit</span><span>FARRELL CUSTOM STUDIO</span></div>
+  </section>
+  <aside class="properties-panel"><p class="eyebrow">PRODUCT DETAILS</p><h2 id="sideProductName">T-Shirt</h2><div class="product-meta"><span id="sidePrice">₱0</span><span class="stock-pill">CUSTOMIZABLE</span></div><label>Size<select id="shirtSize"><option>S</option><option>M</option><option>L</option><option>XL</option></select></label><label>Quantity<input id="shirtQuantity" type="number" min="1" max="10" value="1"></label><div class="property-divider"></div><h3>Layer actions</h3><p class="muted tiny">Select an element on the canvas to edit its position and size. Use the controls on the left to manage layers.</p><div class="property-note">Your front and back artwork are saved separately. You can return to edit a saved design from the same browser session.</div><button id="addCartBtn" class="primary-btn full">Save & Add to Cart</button><button id="backStoreBtn" class="text-btn">← Back to store</button></aside>
+</main>
+<div id="editorToast" class="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+<script src="customize.js"></script>
+</body></html>
