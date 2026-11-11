@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FARREL CLOTHING</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&family=Permanent+Marker&family=Sedgwick+Ave+Display&family=Anton&family=Urbanist:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,900&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER / NAVBAR ================= -->
+
+    <header>
+
+        <!-- Brand Logo with Neon Crown -->
+        <a href="#" class="header-brand-wrap" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Farrel Clothing Home">
+            <svg class="header-crown-svg" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 8L10 24H30L38 8L27 16L20 2L13 16L2 8Z" stroke="#00E5FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="rgba(0, 229, 255, 0.2)"/>
+                <circle cx="2" cy="8" r="2.2" fill="#00E5FF"/>
+                <circle cx="20" cy="2" r="2.2" fill="#00E5FF"/>
+                <circle cx="38" cy="8" r="2.2" fill="#00E5FF"/>
+            </svg>
+            <div class="header-brand">
+                <h1>FARREL</h1>
+                <span class="brand-sub">CLOTHING</span>
+            </div>
+        </a>
+
+        <!-- Desktop Pill Navigation -->
+        <nav class="header-nav" aria-label="Main Navigation">
+            <a href="#" class="nav-pill active" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                <span>🏠</span>
+                <span>Home</span>
+            </a>
+            <a href="#products" class="nav-pill" onclick="openCollection('All')">
+                <span>👤</span>
+                <span>Shop ▾</span>
+            </a>
+            <a href="#shop-categories" class="nav-pill">
+                <span>⊞</span>
+                <span>Categories ▾</span>
+            </a>
+            <a href="#about-section" class="nav-pill">
+                <span>ℹ</span>
+                <span>About</span>
+            </a>
+            <a href="#reviews-section" class="nav-pill">
+                <span>★</span>
+                <span>Reviews</span>
+            </a>
+            <button type="button" class="nav-pill nav-orders-button" onclick="showOrders()" aria-label="Open My Orders">
+                <span>🧾</span>
+                <span>My Orders</span>
+            </button>
+            <a href="admin.html" class="nav-pill" id="header-admin-link" style="display:none;">
+                <span>🛠️</span>
+                <span>Admin</span>
+            </a>
+        </nav>
+
+        <!-- Search Bar -->
+        <div class="header-search">
+            <input
+                type="text"
+                id="search-input"
+                placeholder="Search products..."
+                oninput="filterProducts()"
+            >
+            <button type="button" aria-label="Search" onclick="scrollToProducts()">
+                🔍
+            </button>
+        </div>
+
+        <!-- Right Header Actions (Cart, Account, Mobile Toggle) -->
+        <div class="header-actions">
+            <button class="cart-quick-button" onclick="openCart()" aria-label="View Shopping Cart">
+                🛒<span id="cart-count-mini" class="mini-badge">0</span>
+            </button>
+
+            <button class="user-quick-button" onclick="openAccount()" aria-label="My Account">
+                👤
+            </button>
+
+            <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Open mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+    </header>
+
+    <!-- ================= SIDEBAR & OVERLAY ================= -->
+
+    <div class="sidebar-overlay" onclick="closeSidebar()"></div>
+
+    <aside id="app-sidebar" class="app-sidebar">
+
+        <div class="sidebar-header">
+            <div class="header-brand-wrap">
+                <svg class="header-crown-svg" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 8L10 24H30L38 8L27 16L20 2L13 16L2 8Z" stroke="#00E5FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="rgba(0, 229, 255, 0.2)"/>
+                    <circle cx="2" cy="8" r="2" fill="#00E5FF"/>
+                    <circle cx="20" cy="2" r="2" fill="#00E5FF"/>
+                    <circle cx="38" cy="8" r="2" fill="#00E5FF"/>
+                </svg>
+                <span class="sidebar-logo">FARREL</span>
+            </div>
+            <button class="sidebar-close" onclick="closeSidebar()" aria-label="Close menu">✕</button>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <button class="sidebar-link" onclick="openCart(); closeSidebar();">
+                <span class="sidebar-icon">🛒</span>
+                <span>Cart</span>
+                <span id="cart-count" class="sidebar-count">0</span>
+            </button>
+
+            <button class="sidebar-link" onclick="showOrders(); closeSidebar();">
+                <span class="sidebar-icon">🧾</span>
+                <span>My Orders</span>
+            </button>
+
+            <button class="sidebar-link" onclick="openAccount(); closeSidebar();">
+                <span class="sidebar-icon">👤</span>
+                <span>Account</span>
+            </button>
+
+            <button class="sidebar-link theme-button" onclick="toggleTheme()">
+                <span class="sidebar-icon">☀️</span>
+                <span>Light Mode</span>
+            </button>
+
+            <a class="sidebar-link admin-link" id="admin-link" href="admin.html" style="display:none;">
+                <span class="sidebar-icon">🛠️</span>
+                <span>Admin Dashboard</span>
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main>
+
+        <!-- 4. HERO SECTION -->
+        <section class="hero-banner">
+
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>🔥</span>
+                    <span>NEW COLLECTION</span>
+                </div>
+
+                <svg class="hero-crown-art" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 8L10 24H30L38 8L27 16L20 2L13 16L2 8Z" stroke="#00E5FF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="rgba(0, 229, 255, 0.25)"/>
+                    <circle cx="2" cy="8" r="2.5" fill="#00E5FF"/>
+                    <circle cx="20" cy="2" r="2.5" fill="#00E5FF"/>
+                    <circle cx="38" cy="8" r="2.5" fill="#00E5FF"/>
+                </svg>
+
+                <h2 class="hero-title">
+                    FARREL<br>CLOTHING
+                </h2>
+
+                <div class="hero-tagline">
+                    WEAR • STAND • BE YOU
+                </div>
+
+                <p class="hero-sub">
+                    Upgrade your style. Join the movement.
+                </p>
+
+                <div class="hero-cta-group">
+                    <button class="hero-button btn-neon-primary" onclick="scrollToProducts()">
+                        SHOP NOW →
+                    </button>
+                </div>
+
+                <!-- Carousel Controls -->
+                <div class="hero-carousel-controls">
+                    <div class="carousel-dots">
+                        <span class="carousel-dot active"></span>
+                        <span class="carousel-dot"></span>
+                        <span class="carousel-dot"></span>
+                    </div>
+                    <button class="carousel-arrow-btn" aria-label="Previous" onclick="scrollToProducts()">‹</button>
+                    <button class="carousel-arrow-btn" aria-label="Next" onclick="scrollToProducts()">›</button>
+                </div>
+            </div>
+
+            <!-- Streetwear Model Hero Artwork -->
+            <div class="hero-image-wrap">
+                <img
+                    src="images/hero_model.png"
+                    alt="Farrel Clothing Streetwear Model"
+                    class="hero-model-img"
+                >
+                <div class="hero-floating-tag">
+                    STREETWEAR FOR THE NEXT GEN
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 5. SHOP BY CATEGORY -->
+        <section id="shop-categories" class="featured-collections">
+
+            <div class="section-header">
+                <span class="section-tag">✦ STREET CULTURE</span>
+                <div class="section-title-wrap">
+                    <div class="section-line"></div>
+                    <h2 class="section-title">SHOP BY CATEGORY</h2>
+                    <div class="section-line right"></div>
+                </div>
+                <p class="section-sub">Your outfits looks you dominant.</p>
+            </div>
+
+            <div class="collection-grid">
+
+                <!-- 01. JACKETS CARD -->
+                <div
+                    class="collection-card jackets-card"
+                    onclick="openCollection('Jackets')"
+                    onkeydown="if(event.key==='Enter'||event.key===' ')openCollection('Jackets')"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Explore Jackets Collection"
+                >
+                    <img
+                        src="images/cat_jackets.png"
+                        alt="Jackets Collection - Heavyweight Streetwear"
+                        class="collection-image"
+                    >
+                    <div class="collection-overlay"></div>
+                    <div class="collection-card-top">
+                        <span class="collection-icon-badge">✦ OUTERWEAR</span>
+                        <span class="collection-number">01</span>
+                    </div>
+                    <div class="collection-content">
+                        <h3 class="collection-title">JACKETS</h3>
+                        <p>Windbreakers, Hoodies & Heavy Cuts</p>
+                        <span class="collection-link">
+                            <span>VIEW COLLECTION</span>
+                            <span class="link-arrow">→</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 02. SHIRTS CARD -->
+                <div
+                    class="collection-card shirts-card"
+                    onclick="openCollection('Shirts')"
+                    onkeydown="if(event.key==='Enter'||event.key===' ')openCollection('Shirts')"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Explore Shirts Collection"
+                >
+                    <img
+                        src="images/cat_shirts.png"
+                        alt="Shirts Collection - Graphic & Oversized Tees"
+                        class="collection-image"
+                    >
+                    <div class="collection-overlay"></div>
+                    <div class="collection-card-top">
+                        <span class="collection-icon-badge">✦ SOWLID TEES</span>
+                        <span class="collection-number">02</span>
+                    </div>
+                    <div class="collection-content">
+                        <h3 class="collection-title">SHIRTS</h3>
+                        <p>Oversized Cotton & Raw Graphic Prints</p>
+                        <span class="collection-link">
+                            <span>VIEW COLLECTION</span>
+                            <span class="link-arrow">→</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 03. ACCESSORIES CARD -->
+                <div
+                    class="collection-card accessories-card"
+                    onclick="openCollection('Accessories')"
+                    onkeydown="if(event.key==='Enter'||event.key===' ')openCollection('Accessories')"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Explore Accessories Collection"
+                >
+                    <img
+                        src="images/cat_accessories.png"
+                        alt="Accessories Collection - Bags, Caps & Beanies"
+                        class="collection-image"
+                    >
+                    <div class="collection-overlay"></div>
+                    <div class="collection-card-top">
+                        <span class="collection-number">03</span>
+                    </div>
+                    <div class="collection-content">
+                        <span class="collection-subtag">EVERYDAY CARRY</span>
+                        <h3 class="collection-title">ACCESSORIES</h3>
+                        <p>Tactical Bags, Snapbacks & Beanies</p>
+                        <span class="collection-link">
+                            <span>VIEW COLLECTION</span>
+                            <span class="link-arrow">→</span>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ANIMATED STREETWEAR MARQUEE TAPE -->
+        <div class="farrel-marquee">
+            <div class="marquee-track">
+                <span>✦ FARREL CLOTHING</span>
+                <span class="cyan">• NEW DROP</span>
+                <span>• STREETWEAR</span>
+                <span class="cyan">• WEAR. STAND. BE YOU.</span>
+                <span>• HEAVYWEIGHT CUTS</span>
+                <span class="cyan">• LIMITED RUN</span>
+                <span>✦ FARREL CLOTHING</span>
+                <span class="cyan">• NEW DROP</span>
+                <span>• STREETWEAR</span>
+                <span class="cyan">• WEAR. STAND. BE YOU.</span>
+                <span>• HEAVYWEIGHT CUTS</span>
+                <span class="cyan">• LIMITED RUN</span>
+            </div>
+        </div>
+
+        <!-- 6. NEW SEASON / LATEST DROP BANNER -->
+        <section class="new-drop-section">
+
+            <div class="new-drop-content">
+                <span class="new-drop-label">
+                    ⏰ LIMITED TIME ONLY
+                </span>
+
+                <h2>
+                    NEW SEASON
+                </h2>
+
+                <p>
+                    Fresh Looks. Bigger Vibes.
+                </p>
+
+                <button
+                    type="button"
+                    class="new-drop-button"
+                    onclick="scrollToProducts()"
+                >
+                    VIEW COLLECTION →
+                </button>
+            </div>
+
+            <div class="new-drop-image">
+                <img
+                    src="images/new_season_models.png"
+                    alt="Farrel New Season Streetwear"
+                >
+            </div>
+
+        </section>
+
+        <!-- 7. FLASH SALE SECTION -->
+        <section class="flash-sale-section">
+
+            <div class="flash-sale-header">
+                <div class="flash-sale-title-group">
+                    <span class="flash-sale-label">⚡ LIMITED TIME</span>
+                    <h2>
+                        <span>FLASH SALE</span>
+                    </h2>
+                    <p>Grab these deals before they're gone!</p>
+                </div>
+
+                <div class="countdown-box">
+                    <span class="countdown-label">ENDS IN</span>
+
+                    <div class="countdown">
+                        <div>
+                            <strong id="sale-hours">01</strong>
+                            <small>Hrs</small>
+                        </div>
+
+                        <span>:</span>
+
+                        <div>
+                            <strong id="sale-minutes">42</strong>
+                            <small>Min</small>
+                        </div>
+
+                        <span>:</span>
+
+                        <div>
+                            <strong id="sale-seconds">30</strong>
+                            <small>Sec</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flash Sale products are loaded from the admin-selected Supabase list. -->
+            <div class="flash-products" id="flash-products-dynamic">
+                <p class="flash-sale-loading">Loading current deals...</p>
+                <div class="dont-miss-card" onclick="scrollToProducts()" role="button" tabindex="0">
+                    <img src="images/dont_miss_out.png" alt="Don't Miss Out on Streetwear Drops" class="dont-miss-img">
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 9. SHOPPING BENEFITS BAR -->
+        <section class="shopping-benefits">
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🚚</div>
+                <div class="benefit-info">
+                    <strong>Free Shipping</strong>
+                    <small>On orders ₱999+</small>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🛡️</div>
+                <div class="benefit-info">
+                    <strong>Secure Payment</strong>
+                    <small>Your data is safe</small>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">💋</div>
+                <div class="benefit-info">
+                    <strong>KISS NI FARREL</strong>
+                    <small>He always there for you</small>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🔄</div>
+                <div class="benefit-info">
+                    <strong>Easy Returns</strong>
+                    <small>Hassle-free guarantee</small>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 8. MAIN PRODUCT CATALOG -->
+        <section class="catalog-section-wrap">
+
+            <div class="section-header">
+                <span class="section-tag">✦ FULL CATALOG</span>
+                <div class="section-title-wrap">
+                    <div class="section-line"></div>
+                    <h2 class="section-title">STREETWEAR DROPS</h2>
+                    <div class="section-line right"></div>
+                </div>
+                <p class="section-sub">Raw underground cuts, heavyweight cotton, and cyber graphic prints.</p>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="categories">
+
+                <button
+                    onclick="setCategory('All')"
+                    class="category active"
+                >
+                    ALL
+                </button>
+
+                <button
+                    onclick="setCategory('Shirts')"
+                    class="category"
+                >
+                    SHIRTS
+                </button>
+
+                <button
+                    onclick="setCategory('Jackets')"
+                    class="category"
+                >
+                    JACKETS
+                </button>
+
+                <button
+                    onclick="setCategory('Shorts')"
+                    class="category"
+                >
+                    SHORTS
+                </button>
+
+                <button
+                    onclick="setCategory('Accessories')"
+                    class="category"
+                >
+                    ACCESSORIES
+                </button>
+
+                <button
+                    onclick="setCategory('Pants')"
+                    class="category"
+                >
+                    PANTS
+                </button>
+
+            </div>
+
+            <!-- Dynamic Products Grid -->
+            <div
+                id="products"
+                class="product-container"
+            ></div>
+
+        </section>
+
+        <!-- 9. CUSTOMER REVIEWS SHOWCASE -->
+        <section id="reviews-section" class="reviews-showcase">
+
+            <div class="section-header">
+                <span class="section-tag">✦ VERIFIED REVIEWS</span>
+                <div class="section-title-wrap">
+                    <div class="section-line"></div>
+                    <h2 class="section-title">STREET COMMUNITY</h2>
+                    <div class="section-line right"></div>
+                </div>
+                <p class="section-sub">What the community says about our quality and fit.</p>
+            </div>
+
+            <div class="reviews-grid" id="community-reviews-grid">
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-meta">
+                            <div class="reviewer-avatar">A</div>
+                            <div>
+                                <div class="reviewer-name">ANTHONY A.</div>
+                                <div class="verified-tag">✓ Verified Drip Check</div>
+                            </div>
+                        </div>
+                        <div class="review-stars">★★★★★</div>
+                    </div>
+                    <p class="review-body">
+                        "SOWLID LANG PEDE NA PAMORMA SA PAMORMA NI FARREL BAGANG"
+                    </p>
+                    <span class="review-product-tag">FLAME PINK PANTS • Size M</span>
+                </div>
+
+                                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-meta">
+                            <div class="reviewer-avatar">R</div>
+                            <div>
+                                <div class="reviewer-name">RONEL A.</div>
+                                <div class="verified-tag">✓ Verified Drip Check</div>
+                            </div>
+                        </div>
+                        <div class="review-stars">★★★★★</div>
+                    </div>
+                    <p class="review-body">
+                        "BAGAY NA BAGAY KAY FARREL PWEDE NA BANATAN TO"
+                    </p>
+                    <span class="review-product-tag">FLAME PINK PANTS • Size L</span>
+                </div>
+
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-meta">
+                            <div class="reviewer-avatar">C</div>
+                            <div>
+                                <div class="reviewer-name">CRISTIAN</div>
+                                <div class="verified-tag">✓ Verified Drip Check</div>
+                            </div>
+                        </div>
+                        <div class="review-stars">★★★★★</div>
+                    </div>
+                    <p class="review-body">
+                        "PEDE NA PAMORMA NI FARREL BAGANG SA BGC TO WAG LANG PAHULI SA MARSHALS"
+                    </p>
+                    <span class="review-product-tag">Denim Jacket • Size XL</span>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-meta">
+                            <div class="reviewer-avatar">V</div>
+                            <div>
+                                <div class="reviewer-name">VINCE F.</div>
+                                <div class="verified-tag">✓ Verified Drip Check</div>
+                            </div>
+                        </div>
+                        <div class="review-stars">★★★★★</div>
+                    </div>
+                    <p class="review-body">
+                        "NAKAKA INLOVE PAG SINUOT NI FARREL TO MAY DIIN DIN TALAGA PEDE NA SA MGA ALKAS TO."
+                    </p>
+                    <span class="review-product-tag">Graphic Tee • Size M</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- 9. ABOUT / BRAND STORY -->
+        <section id="about-section" class="about-section">
+            <div class="about-content">
+                <span class="section-tag">✦ THE BRAND</span>
+                <h3 class="about-quote">WEAR. STAND. BE YOU.</h3>
+                <p class="about-text">
+                    Born in the underground alleyways where graffiti meets futuristic cyberpunk culture, <strong>FARREL CLOTHING</strong> is more than fashion — it’s a statement of fearless individuality. Every stitch, screen print, and custom silhouette is crafted with raw urban attitude and heavyweight premium textiles.
+                </p>
+                <button class="btn-neon-ghost" onclick="scrollToProducts()">
+                    EXPLORE THE DROP →
+                </button>
+            </div>
+        </section>
+
+        <!-- 9. NEWSLETTER SUBSCRIPTION -->
+        <section class="newsletter-section">
+            <h2>JOIN THE VIP SQUAD</h2>
+            <p>Subscribe for secret drops, early flash sale access, and a 10% discount after admin approval.</p>
+            <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+                <input type="email" placeholder="Enter your email address..." required>
+                <button type="submit" class="btn-neon-primary">SUBSCRIBE ➔</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <!-- Left: Logo & Crown -->
+            <div class="footer-brand">
+                <svg class="header-crown-svg" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 8L10 24H30L38 8L27 16L20 2L13 16L2 8Z" stroke="#00E5FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="rgba(0, 229, 255, 0.2)"/>
+                    <circle cx="2" cy="8" r="2" fill="#00E5FF"/>
+                    <circle cx="20" cy="2" r="2" fill="#00E5FF"/>
+                    <circle cx="38" cy="8" r="2" fill="#00E5FF"/>
+                </svg>
+                <span class="footer-logo-text">FARREL CLOTHING</span>
+            </div>
+
+            <!-- Center: Tagline & Social Links -->
+            <div class="footer-center">
+                <div class="footer-tagline">Wear. Stand. Be You.</div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/Anthsds1" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">f</a>
+                    <a href="https://www.tiktok.com/@anthonysekago2433?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" class="social-btn" aria-label="TikTok">♪</a>
+                    <a href="https://www.instagram.com/yur_thny1?cplk=MXVoZWw3MzV2MmY3eg" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">📷</a>
+                    <a href="https://github.com/tlazadas-ops" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">🐈‍⬛</a>
+                </div>
+            </div>
+
+            <!-- Right: Mini Newsletter -->
+            <div class="footer-right">
+                <span class="footer-subscribe-title">Subscribe for updates!</span>
+                <form class="footer-mini-form" onsubmit="handleSubscribe(event)">
+                    <input type="email" placeholder="Enter your email..." required>
+                    <button type="submit" aria-label="Submit">➔</button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2025 Farrel Clothing. All rights reserved.</span>
+            <div class="footer-legal-links">
+                <a href="#about-section">Privacy Policy</a>
+                <a href="#about-section">Terms of Service</a>
+                <a href="#about-section">Contact Us</a>
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- ================= PRODUCT DETAILS MODAL ================= -->
+
+    <div
+        id="product-modal"
+        class="cart-modal"
+    >
+
+        <div class="cart-box">
+
+            <button
+                class="close-button"
+                onclick="closeProductDetails()"
+                aria-label="Close"
+            >
+                ✕
+            </button>
+
+            <img
+                id="detail-image"
+                class="detail-image"
+                alt="Product Detail"
+            >
+
+            <h2 id="detail-name"></h2>
+
+            <p
+                id="detail-price"
+                class="detail-price"
+            ></p>
+
+            <p id="detail-rating"></p>
+
+            <p id="detail-stock"></p>
+
+            <!-- PRODUCT DESCRIPTION -->
+            <p id="detail-description"></p>
+
+            <!-- SIZE -->
+            <label for="detail-size">Size</label>
+            <select id="detail-size">
+                <option value="S">Small (S)</option>
+                <option value="M">Medium (M)</option>
+                <option value="L">Large (L)</option>
+                <option value="XL">Extra Large (XL)</option>
+            </select>
+
+            <!-- QUANTITY -->
+            <label for="detail-quantity">Quantity</label>
+            <input
+                type="number"
+                id="detail-quantity"
+                value="1"
+                min="1"
+            >
+
+            <!-- CUSTOM T-SHIRT DESIGN -->
+            <button
+                id="customize-product-button"
+                class="checkout-button"
+                onclick="openProductCustomizer()"
+                style="margin-top: 12px; width: 100%; background: linear-gradient(90deg,#00d9ff,#155eef); display:none;"
+            >
+                ✦ Customize This Shirt
+            </button>
+
+            <!-- ADD TO CART -->
+            <button
+                class="checkout-button"
+                onclick="addDetailedProductToCart()"
+                style="margin-top: 18px; width: 100%;"
+            >
+                🛒 Add to Cart
+            </button>
+
+            <!-- REVIEWS -->
+            <div class="reviews-section">
+
+                <h3>⭐ Customer Reviews</h3>
+
+                <div id="reviews-list">
+                    <p>No reviews yet.</p>
+                </div>
+
+                <div id="review-locked-message" class="review-locked" style="display:none;">
+                    🔒 You can rate this product once your order for it says
+                    <strong>"Delivered"</strong> in My Orders.
+                </div>
+
+                <div id="review-form" class="review-form">
+
+                    <h4>⭐ Rate This Product</h4>
+
+                    <select id="review-rating">
+                        <option value="">Select Rating</option>
+                        <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
+                        <option value="4">⭐⭐⭐⭐ 4 Stars</option>
+                        <option value="3">⭐⭐⭐ 3 Stars</option>
+                        <option value="2">⭐⭐ 2 Stars</option>
+                        <option value="1">⭐ 1 Star</option>
+                    </select>
+
+                    <textarea
+                        id="review-text"
+                        placeholder="Write your review..."
+                    ></textarea>
+
+                    <button
+                        type="button"
+                        onclick="addReview()"
+                    >
+                        Submit Review
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= CART MODAL ================= -->
+
+    <div
+        id="cart-modal"
+        class="cart-modal"
+    >
+
+        <div class="cart-box">
+
+            <button
+                class="close-button"
+                onclick="closeCart()"
+                aria-label="Close"
+            >
+                ✕
+            </button>
+
+            <h2>🛒 Shopping Cart</h2>
+
+            <div id="cart-items">
+                <p>Your cart is empty.</p>
+            </div>
+
+            <div class="cart-total">
+                <strong>Total:</strong>
+                <strong>
+                    ₱<span id="cart-total">0</span>
+                </strong>
+            </div>
+
+            <button
+                class="checkout-button"
+                onclick="openCheckout()"
+                style="width: 100%;"
+            >
+                🛍️ Checkout
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ================= CHECKOUT MODAL ================= -->
+
+    <div
+        id="checkout-modal"
+        class="cart-modal"
+    >
+
+        <div class="cart-box">
+
+            <button
+                class="close-button"
+                onclick="closeCheckout()"
+                aria-label="Close"
+            >
+                ✕
+            </button>
+
+            <h2>Checkout</h2>
+
+            <form id="checkout-form">
+
+                <label for="customer-name">Customer Name</label>
+                <input
+                    type="text"
+                    id="customer-name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+                <label for="contact">Contact Number</label>
+                <input
+                    type="tel"
+                    id="contact"
+                    placeholder="09XXXXXXXXX"
+                    required
+                >
+
+                <label for="address">Delivery Address</label>
+                <textarea
+                    id="address"
+                    placeholder="Enter your complete address"
+                    required
+                ></textarea>
+
+                <label for="payment">Payment Method</label>
+                <select
+                    id="payment"
+                    required
+                >
+                    <option value="">Select Payment</option>
+                    <option value="Cash on Delivery">Cash on Delivery</option>
+                    <option value="GCash">GCash</option>
+                </select>
+
+                <!-- ORDER SUMMARY -->
+                <div class="checkout-summary">
+                    <h3>🧾 Order Summary</h3>
+                    <div id="checkout-items">
+                        <p>No items.</p>
+                    </div>
+                    <hr style="border: 0.5px solid rgba(0, 140, 255, 0.25); margin: 10px 0;">
+                    <p>
+                        <strong>Total:</strong>
+                        ₱<span id="checkout-total">0</span>
+                    </p>
+                </div>
+
+                <!-- PLACE ORDER -->
+                <button
+                    type="submit"
+                    class="checkout-button"
+                    style="width: 100%; margin-top: 16px;"
+                >
+                    Place Order
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- ================= ORDER CONFIRMATION MODAL ================= -->
+
+    <div
+        id="success-modal"
+        class="cart-modal"
+    >
+
+        <div class="cart-box success-box">
+
+            <button
+                class="close-button"
+                onclick="closeSuccess()"
+                aria-label="Close"
+            >
+                ✕
+            </button>
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h2>Order Placed!</h2>
+
+            <p class="success-message" style="color: var(--color-muted-gray); margin-bottom: 16px;">
+                Thank you for your order! Your streetwear drop is being processed.
+            </p>
+
+            <div class="order-details">
+                <p>
+                    <strong>Order ID:</strong>
+                    <span id="order-id"></span>
+                </p>
+                <p>
+                    <strong>Customer:</strong>
+                    <span id="order-customer"></span>
+                </p>
+                <p>
+                    <strong>Payment:</strong>
+                    <span id="order-payment"></span>
+                </p>
+                <p>
+                    <strong>Total:</strong>
+                    ₱<span id="order-total"></span>
+                </p>
+                <p>
+                    <strong>Status:</strong>
+                    <span class="order-status">Order Received</span>
+                </p>
+            </div>
+
+            <button
+                class="checkout-button"
+                onclick="closeSuccess()"
+                style="width: 100%;"
+            >
+                Continue Shopping
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ================= MY ORDERS MODAL ================= -->
+
+    <div
+        id="orders-modal"
+        class="cart-modal"
+    >
+
+        <div class="cart-box">
+
+            <button
+                class="close-button"
+                onclick="closeOrders()"
+                aria-label="Close"
+            >
+                ✕
+            </button>
+
+            <h2>My Orders</h2>
+
+            <div id="orders-list">
+                <p>No orders yet.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= LOGIN & REGISTER PAGE ================= -->
+
+    <div id="login-page">
+
+        <div class="login-container">
+
+            <button class="login-close-btn" onclick="closeAccountPage()" aria-label="Close Login">✕</button>
+
+            <!-- LOGIN LOGO -->
+            <div class="login-logo">
+                <svg class="header-crown-svg" style="width: 36px; height: 26px; margin: 0 auto 6px;" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 8L10 24H30L38 8L27 16L20 2L13 16L2 8Z" stroke="#00E5FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="rgba(0, 229, 255, 0.2)"/>
+                    <circle cx="2" cy="8" r="2" fill="#00E5FF"/>
+                    <circle cx="20" cy="2" r="2" fill="#00E5FF"/>
+                    <circle cx="38" cy="8" r="2" fill="#00E5FF"/>
+                </svg>
+                <h1>FARREL</h1>
+                <h2>CLOTHING</h2>
+            </div>
+
+            <!-- LOGIN FORM -->
+            <div id="login-section">
+
+                <div class="login-input">
+                    <span>👤</span>
+                    <input
+                        type="text"
+                        id="login-username"
+                        placeholder="Username or Email"
+                    >
+                </div>
+
+                <div class="login-input">
+                    <span>🔒</span>
+                    <input
+                        type="password"
+                        id="login-password"
+                        placeholder="Password"
+                    >
+                </div>
+
+                <button
+                    type="button"
+                    class="sign-in-button"
+                    onclick="loginUser()"
+                >
+                    SIGN IN
+                </button>
+
+                <button
+                    type="button"
+                    class="forgot-password"
+                    onclick="forgotPassword()"
+                >
+                    Forgot Password?
+                </button>
+
+                <p class="signup-text">
+                    Don't have an account?
+                    <button
+                        type="button"
+                        onclick="showRegister()"
+                    >
+                        Sign Up
+                    </button>
+                </p>
+
+                <button type="button" class="guest-continue-btn" onclick="closeAccountPage()">
+                    Continue as Guest →
+                </button>
+
+            </div>
+
+            <!-- REGISTER FORM -->
+            <div
+                id="register-section"
+                style="display:none;"
+            >
+
+                <h3 class="register-title" style="font-family: var(--font-impact); font-size: 20px; color: var(--color-neon-cyan); margin-bottom: 16px;">
+                    CREATE ACCOUNT
+                </h3>
+
+                <div class="login-input">
+                    <span>👤</span>
+                    <input
+                        type="text"
+                        id="register-name"
+                        placeholder="Full Name"
+                    >
+                </div>
+
+                <div class="login-input">
+                    <span>👤</span>
+                    <input
+                        type="text"
+                        id="register-username"
+                        placeholder="Username"
+                    >
+                </div>
+
+                <div class="login-input">
+                    <span>✉️</span>
+                    <input
+                        type="email"
+                        id="register-email"
+                        placeholder="Email"
+                    >
+                </div>
+
+                <div class="login-input">
+                    <span>🔒</span>
+                    <input
+                        type="password"
+                        id="register-password"
+                        placeholder="Password"
+                    >
+                </div>
+
+                <div class="login-input">
+                    <span>🔒</span>
+                    <input
+                        type="password"
+                        id="register-confirm"
+                        placeholder="Confirm Password"
+                    >
+                </div>
+
+                <button
+                    type="button"
+                    class="sign-in-button"
+                    onclick="registerUser()"
+                >
+                    SIGN UP
+                </button>
+
+                <p class="signup-text">
+                    Already have an account?
+                    <button
+                        type="button"
+                        onclick="showLogin()"
+                    >
+                        Sign In
+                    </button>
+                </p>
+
+                <button type="button" class="guest-continue-btn" onclick="closeAccountPage()">
+                    Continue as Guest →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= PROFILE MODAL ================= -->
+
+    <div
+        id="profile-modal"
+        class="cart-modal"
+    >
+
+        <div class="cart-box">
+
+            <button
+                class="close-button"
+                onclick="closeProfile()"
+                aria-label="Close"
+            >
+                ✕
+            </button>
+
+            <h2> My Profile</h2>
+
+            <form id="profile-form">
+
+                <label for="profile-name">Full Name</label>
+                <input
+                    type="text"
+                    id="profile-name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+                <label for="profile-contact">Contact Number</label>
+                <input
+                    type="tel"
+                    id="profile-contact"
+                    placeholder="09XXXXXXXXX"
+                    required
+                >
+
+                <label for="profile-address">Delivery Address</label>
+                <textarea
+                    id="profile-address"
+                    placeholder="Enter your complete address"
+                    required
+                ></textarea>
+
+                <label for="profile-payment">Preferred Payment</label>
+                <select id="profile-payment">
+                    <option value="">Select Payment</option>
+                    <option value="Cash on Delivery">Cash on Delivery</option>
+                    <option value="GCash">GCash</option>
+                </select>
+
+                <button
+                    type="button"
+                    class="checkout-button"
+                    onclick="saveProfile()"
+                    style="width: 100%; margin-top: 16px;"
+                >
+                    Save Profile
+                </button>
+
+                <button
+                    type="button"
+                    class="checkout-button"
+                    onclick="logoutUser()"
+                    style="width: 100%; margin-top: 10px; background: rgba(255, 77, 109, 0.2); border-color: #ff4d6d;"
+                >
+                    🚪 Logout
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- ================= NEON LOADING SCREEN ================= -->
+
+    <div id="farrel-loader">
+
+        <div class="loader-content">
+
+            <svg class="loader-shirt" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <path class="loader-shirt-path" d="M40 10 L25 22 L10 38 L24 52 L34 44 L34 108 L86 108 L86 44 L96 52 L110 38 L95 22 L80 10 L68 18 C64 22 56 22 52 18 Z" />
+                <circle class="loader-shirt-dot" cx="60" cy="70" r="3" />
+            </svg>
+
+            <div class="loader-logo">
+                <span>FARREL</span>
+                <span>CLOTHING</span>
+            </div>
+
+            <div class="loader-line">
+                <div class="loader-progress"></div>
+            </div>
+
+            <p>LOADING COLLECTION...</p>
+
+        </div>
+
+    </div>
+
+    <!-- ================= SCRIPTS ================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
